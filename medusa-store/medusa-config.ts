@@ -5,6 +5,7 @@ loadEnv(process.env.NODE_ENV || 'development', process.cwd())
 module.exports = defineConfig({
   projectConfig: {
     databaseUrl: process.env.DATABASE_URL,
+    redisUrl: process.env.REDIS_URL,
     http: {
       storeCors: process.env.STORE_CORS!,
       adminCors: process.env.ADMIN_CORS!,
@@ -28,6 +29,7 @@ module.exports = defineConfig({
             "localhost",
             ".localhost",
             "127.0.0.1",
+            "192.168.31.85",  // Добавлен IP сервера
           ],
           hmr: {
             // HMR websocket port inside container
