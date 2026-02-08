@@ -1,0 +1,70 @@
+# Файлы и директории для исключения из Docker образа
+
+# Зависимости (устанавливаются в контейнере)
+node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Next.js build артефакты (собираются в контейнере)
+.next
+out
+build
+dist
+
+# Локальные env файлы (не должны попадать в контейнер)
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Git
+.git
+.gitignore
+.gitattributes
+
+# IDE и редакторы
+.vscode
+.idea
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Тесты и документация
+*.md
+!README.md
+!DOCKER.md
+!DEPLOYMENT.md
+docs/
+spec/
+plans/
+
+# CI/CD
+.github
+.gitlab-ci.yml
+.travis.yml
+
+# Логи
+logs
+*.log
+
+# Временные файлы
+tmp
+temp
+.cache
+
+# Coverage
+coverage
+.nyc_output
+
+# Другие
+.eslintrc.js
+.prettierrc
+prettier.config.js
+tsconfig.json
+next-env.d.ts
+next-sitemap.js
+postcss.config.js
+tailwind.config.js
+check-env-variables.js

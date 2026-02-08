@@ -1,0 +1,67 @@
+# Docker Compose конфигурация для Medusa Next.js Frontend
+# Используется для production деплоя на VPS
+
+version: '3.8'
+
+services:
+  # Next.js Frontend Service
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: medusa_frontend
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      # Production окружение
+      - NODE_ENV=production
+      
+      # Backend URL (Medusa server)
+      - MEDUSA_BACKEND_URL=${MEDUSA_BACKEND_URL:-http://88.218.67.164:9000}
+      
+      # Frontend URL
+      - NEXT_PUBLIC_BASE_URL=${NEXT_PUBLIC_BASE_URL:-http://88.218.67.164:8000}
+      
+      # Publishable API ключ
+      - NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY=${NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY}
+      
+      # Регион по умолчанию
+      - NEXT_PUBLIC_DEFAULT_REGION=${NEXT_PUBLIC_DEFAULT_REGION:-eu}
+      
+      # Stripe ключ (если используется)
+      - NEXT_PUBLIC_STRIPE_KEY=${NEXT_PUBLIC_STRIPE_KEY:-}
+      
+      # Medusa Payments ключи (если используются)
+      - NEXT_PUBLIC_MEDUSA_PAYMENTS_PUBLISHABLE_KEY=${NEXT_PUBLIC_MEDUSA_PAYMENTS_PUBLISHABLE_KEY:-}
+      - NEXT_PUBLIC_MEDUSA_PAYMENTS_ACCOUNT_ID=${NEXT_PUBLIC_MEDUSA_PAYMENTS_ACCOUNT_ID:-}
+      
+      # Секрет для revalidation
+      - REVALIDATE_SECRET=${REVALIDATE_SECRET:-supersecret}
+      
+      # Medusa Cloud S3 (если используется)
+      - MEDUSA_CLOUD_S3_HOSTNAME=${MEDUSA_CLOUD_S3_HOSTNAME:-}
+      - MEDUSA_CLOUD_S3_PATHNAME=${MEDUSA_CLOUD_S3_PATHNAME:-}
+      
+      # Отключаем телеметрию Next.js
+      - NEXT_TELEMETRY_DISABLED=1
+    env_file:
+      - .env.production
+    networks:
+      - medusa_network
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:8000', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  medusa_network:
+    external: true
+    name: medusa_network

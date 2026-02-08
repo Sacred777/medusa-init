@@ -12,6 +12,9 @@ const S3_PATHNAME = process.env.MEDUSA_CLOUD_S3_PATHNAME
  * @type {import('next').NextConfig}
  */
 const nextConfig = {
+  // Standalone output для Docker контейнеризации
+  output: 'standalone',
+  
   reactStrictMode: true,
   logging: {
     fetches: {
