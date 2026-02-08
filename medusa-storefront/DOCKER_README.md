@@ -10,26 +10,26 @@
 
 ```bash
 # Запуск в Docker
-docker-compose up -d
+docker compose up -d
 
 # Просмотр логов
-docker-compose logs -f
+docker compose logs -f
 
 # Остановка
-docker-compose down
+docker compose down
 ```
 
 ### Вариант 2: С Nginx в Docker (для production с доменом)
 
 ```bash
 # Запуск с Nginx (требуется SSL сертификаты)
-docker-compose -f docker-compose-nginx.yml up -d
+docker compose -f docker-compose-nginx.yml up -d
 
 # Просмотр логов
-docker-compose -f docker-compose-nginx.yml logs -f
+docker compose -f docker-compose-nginx.yml logs -f
 
 # Остановка
-docker-compose -f docker-compose-nginx.yml down
+docker compose -f docker-compose-nginx.yml down
 ```
 
 **Примечание**: Для production с доменом рекомендуется использовать Nginx на хосте (см. [`NGINX_SETUP.md`](NGINX_SETUP.md)).
@@ -41,7 +41,7 @@ docker-compose -f docker-compose-nginx.yml down
 ./deploy.sh
 
 # На VPS (с Nginx в Docker)
-docker-compose -f docker-compose-nginx.yml up -d
+docker compose -f docker-compose-nginx.yml up -d
 ```
 
 Подробная инструкция в [`DEPLOYMENT.md`](DEPLOYMENT.md).
@@ -91,39 +91,39 @@ REVALIDATE_SECRET=ваш-случайный-секрет
 
 ```bash
 # Запуск
-docker-compose up -d
+docker compose up -d
 
 # Остановка
-docker-compose down
+docker compose down
 
 # Перезапуск
-docker-compose restart
+docker compose restart
 
 # Статус
-docker-compose ps
+docker compose ps
 ```
 
 ### Логи
 
 ```bash
 # Все логи
-docker-compose logs
+docker compose logs
 
 # Логи в реальном времени
-docker-compose logs -f
+docker compose logs -f
 
 # Последние 50 строк
-docker-compose logs --tail=50
+docker compose logs --tail=50
 ```
 
 ### Сборка
 
 ```bash
 # Сборка с кэшем
-docker-compose build
+docker compose build
 
 # Сборка без кэша
-docker-compose build --no-cache
+docker compose build --no-cache
 ```
 
 ## 📦 Multi-stage Build

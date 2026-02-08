@@ -8,8 +8,8 @@
 
 ### Преимущества:
 - ✅ Все сервисы в одном месте (Docker)
-- ✅ Единое управление через docker-compose
-- ✅ Простота деплоя - один `docker-compose up`
+- ✅ Единое управление через docker compose
+- ✅ Простота деплоя - один `docker compose up`
 - ✅ Изоляция сервисов
 
 ### Недостатки:
@@ -117,13 +117,13 @@ MEDUSA_BACKEND_URL=https://ваш-домен.com/api
 
 ```bash
 # Запуск с Nginx
-docker-compose -f docker-compose-nginx.yml up -d
+docker compose -f docker-compose-nginx.yml up -d
 
 # Просмотр логов
-docker-compose -f docker-compose-nginx.yml logs -f
+docker compose -f docker-compose-nginx.yml logs -f
 
 # Проверка статуса
-docker-compose -f docker-compose-nginx.yml ps
+docker compose -f docker-compose-nginx.yml ps
 ```
 
 ## Шаг 5: Проверка работоспособности

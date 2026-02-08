@@ -14,7 +14,7 @@ WORKDIR /app
 COPY package.json yarn.lock .yarnrc.yml ./
 
 # Копируем yarn releases если есть
-COPY .yarn/releases ./.yarn/releases 2>/dev/null || true
+COPY .yarn/releases ./.yarn/releases
 
 # Устанавливаем зависимости
 RUN yarn install --frozen-lockfile --production=false

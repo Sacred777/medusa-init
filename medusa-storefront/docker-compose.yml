@@ -1,7 +1,6 @@
 # Docker Compose конфигурация для Medusa Next.js Frontend
 # Используется для production деплоя на VPS
-
-version: '3.8'
+# Совместимо с Docker Compose V2 (docker compose без дефиса)
 
 services:
   # Next.js Frontend Service

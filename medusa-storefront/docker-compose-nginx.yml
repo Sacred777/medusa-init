@@ -1,7 +1,6 @@
 # Docker Compose конфигурация для Medusa с Nginx Reverse Proxy
 # Используется ПОСЛЕ получения домена и SSL сертификата
-
-version: '3.8'
+# Совместимо с Docker Compose V2 (docker compose без дефиса)
 
 services:
   # ============================================
